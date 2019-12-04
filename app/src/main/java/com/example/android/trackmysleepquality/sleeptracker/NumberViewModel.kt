@@ -42,7 +42,7 @@ class NumberViewModel(
     private var number = MutableLiveData<Number?>()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    private val dbCount = database.getFirst()
+    val dbCount = database.getFirst()
 
     //Holds the count
     private val _count = MutableLiveData<Int>()
@@ -51,6 +51,8 @@ class NumberViewModel(
 
 
     fun plus(){
+        createDatabase()
+
         uiScope.launch{
             //adds to current count
             _count.value = (_count.value)?.plus(1)
@@ -70,7 +72,7 @@ class NumberViewModel(
     }
 
     init {
-        _count.value = 0
+        _count.value = dbCount.value
         initializeTonight()
 
     }
@@ -95,16 +97,18 @@ class NumberViewModel(
     }
 
     fun createDatabase(){
-        uiScope.launch {
-            var newNumber = Number()
+        if(number.value ==null) {
+            uiScope.launch {
+                var newNumber = Number()
 
-            _count.value = (_count.value)?.plus(1)
-            newNumber.number = count.value!!
+                _count.value = (_count.value)?.plus(1)
+                newNumber.number = count.value!!
 
-            insert(newNumber)
+                insert(newNumber)
 
-            number.value = getTonightFromDatabase()
+                number.value = getTonightFromDatabase()
 
+            }
         }
     }
 
@@ -150,6 +154,8 @@ class NumberViewModel(
             database.clear()
         }
     }
+
+
 
     override fun onCleared() {
         super.onCleared()
