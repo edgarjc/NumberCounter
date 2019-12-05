@@ -16,11 +16,12 @@
 
 <resources>
 
-    <color name="colorPrimary">#6ab343</color>
-    <color name="colorPrimaryDark">#388310</color>
-    <color name="colorAccent">#6ab343</color>
+    <color name="colorPrimary">#1565c0</color>
+    <color name="colorPrimaryDark">#003c8f</color>
+    <color name="colorAccent">#F57C00</color>
 
     <color name="green_color">#388310</color>
     <color name="white_text_color">#f0f0f0</color>
 
 </resources>
+

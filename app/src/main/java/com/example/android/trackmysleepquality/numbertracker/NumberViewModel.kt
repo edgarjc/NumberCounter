@@ -42,84 +42,70 @@ class NumberViewModel(
     private var number = MutableLiveData<Number?>()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
+    //Database number
     val dbCount = database.getFirst()
 
-    //Holds the count
-    private val _count = MutableLiveData<Int>()
-    val count: LiveData<Int>
-        get() = _count
-
+    init {
+        createDatabase()
+    }
 
     fun plus(){
-        createDatabase()
-
         uiScope.launch{
-            //adds to current count
-            _count.value = (_count.value)?.plus(1)
+            //Gets entry with ID 1 and adds number
+            withContext(Dispatchers.IO) {
+                val tonight = database.get(1) ?: return@withContext
 
+                tonight.number = tonight.number.plus(1)
+
+                update(tonight)
+            }
+
+        }
+    }
+
+    fun minus(){
+        uiScope.launch{
+            //Gets entry with ID 1 and subtracts 1 from number
+            withContext(Dispatchers.IO) {
+                val tonight = database.get(1) ?: return@withContext
+
+                //Makes sure it doesnt go into negative numbers
+                if (tonight.number > 0){
+                tonight.number = tonight.number.minus(1)
+
+                update(tonight)
+                }
+            }
+        }
+    }
+
+    //Sets count to 0
+    fun clear() {
+        uiScope.launch {
             //Gets entry with ID 1 and updates number
             withContext(Dispatchers.IO) {
                 val tonight = database.get(1) ?: return@withContext
 
-                tonight.number = _count.value!!
+                tonight.number = 0
 
                 database.update(tonight)
             }
-
-
-            number.value = getTonightFromDatabase()
-        }
-    }
-
-    init {
-        _count.value = dbCount.value
-        initializeTonight()
-
-    }
-
-
-
-    private fun initializeTonight() {
-        uiScope.launch {
-            number.value = getTonightFromDatabase()
         }
     }
 
 
-
-    private suspend fun getTonightFromDatabase(): Number? {
-
-        return withContext(Dispatchers.IO) {
-            var night = database.getNumber()
-
-            night
-        }
-    }
-
+    //On init, if database is empy, its populated with this data
     fun createDatabase(){
-        if(number.value ==null) {
+        if (number.value == null) {
             uiScope.launch {
                 var newNumber = Number()
 
-                _count.value = (_count.value)?.plus(1)
-                newNumber.number = count.value!!
+                newNumber.number = 0
 
                 insert(newNumber)
 
-                number.value = getTonightFromDatabase()
-
             }
-        }
-    }
-
-
-
-
-    fun onStartTracking() {
-        uiScope.launch {
-            val newNight = Number()
-            insert(newNight)
-            number.value = getTonightFromDatabase()
         }
     }
 
@@ -140,21 +126,6 @@ class NumberViewModel(
             database.get(0)
         }
     }
-
-
-    fun onClear() {
-        uiScope.launch {
-            clear()
-            number.value = null
-        }
-    }
-
-    suspend fun clear() {
-        withContext(Dispatchers.IO) {
-            database.clear()
-        }
-    }
-
 
 
     override fun onCleared() {

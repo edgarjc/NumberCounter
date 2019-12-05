@@ -62,12 +62,10 @@ class NumberFragment : Fragment() {
 
         binding.sleepTrackerViewModel = sleepTrackerViewModel
 
+        //Observes for any changes on database and updates the UI
         sleepTrackerViewModel.dbCount.observe(this, Observer {dbCount ->
             dbView.text = dbCount.toString()
-
         }
-
-
 
         )
         return binding.root

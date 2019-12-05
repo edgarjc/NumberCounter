@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TrackMySleepQualityCoroutines.iml" filepath="$PROJECT_DIR$/TrackMySleepQualityCoroutines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NumberCounter.iml" filepath="$PROJECT_DIR$/NumberCounter.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

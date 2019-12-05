@@ -35,34 +35,16 @@
         android:layout_height="match_parent"
         tools:context=".sleeptracker.NumberFragment">
 
-        <!-- Simplest way of displaying scrollable text and data. There is a
-             better and more efficient way to do this, and you will learn about
-             RecyclerView in a later lesson. -->
 
-      <!--  <TextView
-            android:id="@+id/textview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{sleepTrackerViewModel.nightsString}"
-            app:layout_constraintBottom_toTopOf="@+id/plus"
-            tools:layout_editor_absoluteX="16dp" />
--->
         <TextView
             android:id="@+id/dbView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/display"
-            app:layout_constraintEnd_toEndOf="@+id/display"
-            app:layout_constraintStart_toStartOf="@+id/display" />
+            android:layout_marginTop="20dp"
 
-        <TextView
-            android:id="@+id/display"
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
             android:hint="0"
-            android:text="@{String.valueOf(sleepTrackerViewModel.count)}"
             android:textSize="40sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/plus"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -71,12 +53,45 @@
             android:id="@+id/plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
             android:onClick="@{()-> sleepTrackerViewModel.plus()}"
             android:text="+"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/display"
-            app:layout_constraintStart_toStartOf="@+id/display"
-            app:layout_constraintTop_toBottomOf="@+id/display" />
+            app:layout_constraintEnd_toEndOf="@+id/dbView"
+            app:layout_constraintStart_toStartOf="@+id/dbView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.57" />
+
+        <Button
+            android:id="@+id/minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorAccent"
+            android:onClick="@{()-> sleepTrackerViewModel.minus()}"
+            android:text="-"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/plus"
+            app:layout_constraintStart_toStartOf="@+id/plus"
+            app:layout_constraintTop_toBottomOf="@+id/plus" />
+
+        <Button
+            android:id="@+id/clear"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+
+            android:onClick="@{()-> sleepTrackerViewModel.clear()}"
+            android:text="Clear"
+            android:textColor="@color/colorPrimary"
+            android:textColorLink="#E91E63"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <!-- With data binding and LiveData, we can track the buttons' visibility states
              from the ViewModel. The click handler is in the ViewModel as well, and
