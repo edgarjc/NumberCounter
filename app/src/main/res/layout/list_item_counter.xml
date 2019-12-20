@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="night"
+            type="com.example.android.trackmysleepquality.database.Number" />
+
+        <variable
+            name="clickListener"
+            type="com.example.android.trackmysleepquality.ui.CounterListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onClick(night)}"
+        >
+
+
+        <TextView
+            android:id="@+id/countLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Count label "
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:count="@{night}"
+            app:layout_constraintEnd_toEndOf="@+id/countLabel"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/countLabel"
+            app:layout_constraintTop_toBottomOf="@+id/countLabel"
+            tools:text="Excellent!!!" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

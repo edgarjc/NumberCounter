@@ -49,10 +49,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="97dp"
+            android:layout_height="53dp"
             android:background="@color/colorAccent"
             android:onClick="@{()-> sleepTrackerViewModel.plus()}"
             android:text="+"
@@ -61,29 +61,27 @@
             app:layout_constraintEnd_toEndOf="@+id/dbView"
             app:layout_constraintStart_toStartOf="@+id/dbView"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.57" />
+            app:layout_constraintVertical_bias="0.51" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/minus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="97dp"
+            android:layout_height="53dp"
             android:layout_marginTop="10dp"
             android:background="@color/colorAccent"
             android:onClick="@{()-> sleepTrackerViewModel.minus()}"
             android:text="-"
-            android:textSize="20sp"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="@+id/plus"
             app:layout_constraintStart_toStartOf="@+id/plus"
             app:layout_constraintTop_toBottomOf="@+id/plus" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/clear"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-
             android:onClick="@{()-> sleepTrackerViewModel.clear()}"
             android:text="Clear"
             android:textColor="@color/colorPrimary"

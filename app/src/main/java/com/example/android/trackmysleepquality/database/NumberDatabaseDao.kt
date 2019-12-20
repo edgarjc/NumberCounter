@@ -34,10 +34,19 @@ interface NumberDatabaseDao {
     @Query("SELECT * from daily_sleep_quality_table WHERE nightId = :key")
     fun get(key: Long): Number?
 
+    /**
+     * Selects and returns the night with given nightId.
+     */
+    @Query("SELECT * from daily_sleep_quality_table WHERE nightId = :key")
+    fun getNumberWithId(key: Long): LiveData<Number>
+
     //Selects first entry
     @Query("SELECT number from daily_sleep_quality_table WHERE nightId = 1")
     fun getFirst(): LiveData<Int>
 
+    //Selects first entry
+    @Query("SELECT COUNT(*) from daily_sleep_quality_table")
+    fun getCount(): Int
 
     @Query("DELETE FROM daily_sleep_quality_table")
     fun clear()
@@ -48,5 +57,9 @@ interface NumberDatabaseDao {
 
     @Query("SELECT * FROM daily_sleep_quality_table ORDER BY nightId DESC")
     fun getAllNumbers(): LiveData<List<Number>>
+
+
+
+
 
 }

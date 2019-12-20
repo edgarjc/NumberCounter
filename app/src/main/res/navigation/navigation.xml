@@ -21,12 +21,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/sleep_tracker_fragment">
+    app:startDestination="@id/dashboardFragment">
 
     <fragment
-        android:id="@+id/sleep_tracker_fragment"
+        android:id="@+id/number_fragment"
         android:name="com.example.android.trackmysleepquality.sleeptracker.NumberFragment"
-        android:label="@string/sleep_tracker_fragment"
+        android:label="Counter App"
         tools:layout="@layout/fragment_number_tracker"/>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.android.trackmysleepquality.ui.AboutFragment"
+        android:label="About"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.android.trackmysleepquality.ui.DashboardFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_number_fragment"
+            app:destination="@id/number_fragment" />
+    </fragment>
 
 </navigation>
